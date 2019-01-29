@@ -5,3 +5,7 @@
     text-align: left;
     padding: 2rem;
 }
+
+.active {
+    color: red;
+}

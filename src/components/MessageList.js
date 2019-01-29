@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import style from './../messagelist.module.css'
 
 class MessageList extends Component {
     constructor(props) {
