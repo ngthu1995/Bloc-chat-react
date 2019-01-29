@@ -15,14 +15,26 @@ var config = {
 firebase.initializeApp(config);
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeRoom: ''
+    }
+  }
+
+  setActiveRoom(room) {
+    console.log('room');
+    this.setState({ activeRoom: room });
+  }
+
   render() {
     return (
       <div className="App">
         <RoomList
-          firebase = {firebase}
+          firebase = {firebase} activeRoom={this.state.activeRoom} setActiveRoom={() => this.setActiveRoom()}
         />
         <MessageList
-         firebase = {firebase}
+         firebase = {firebase} activeRoom={this.state.activeRoom} 
          />
       </div>
     );
