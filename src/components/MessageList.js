@@ -7,7 +7,7 @@ class MessageList extends Component {
             messagesList : []
         }
 
-        this.messagesRef = this.props.firebase.database().ref('rooms/messages');    
+        this.messagesRef = this.props.firebase.database().ref('rooms');    
     };
 
     componentDidMount() {
