@@ -22,12 +22,18 @@ class MessageList extends Component {
     }
 
     handleChange(event) {
-        this.setState({newMessage: event.target.value});
+        event.preventDefault();
+        this.setState({
+            newMessage: event.target.value,
+            roomId: this.props.activeRoom.key
+        });
+        console.log(this.state.roomId);
     }
 
     handleCreateMessage(e) {
         this.messagesRef.push({
-            list: this.state.newMessage
+            message: this.state.newMessage,
+            roomId: this.state.roomId
         })
         this.setState({newMessage: ''});
         e.preventDefault();
@@ -42,8 +48,13 @@ class MessageList extends Component {
                     <button type="submit">Submit</button>
                 </form>
                 { this.state.messagesList.map( message => 
-                    <h2 key={message.key}>{message.list}</h2>
+                    {if (message.roomId === this.props.activeRoom.key) {
+                        return <h1 key={message.key}>{message.message}</h1>
+                      }
+                      return null;}
                 )}
+                    
+                
             </div>
          );
     }

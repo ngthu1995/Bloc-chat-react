@@ -40,6 +40,7 @@ class RoomList extends Component {
 
     setRoom(room) {
         this.props.toSetActiveRoom(room);
+        console.log(room);
     }
 
     render() { 

@@ -23,7 +23,6 @@ class App extends Component {
   }
 
   handlerSetActiveRoom = (room) => {
-    console.log('room');
     this.setState({ activeRoom: room });
     // console.log(this.state.activeRoom);
   }
