@@ -47,10 +47,16 @@ class RoomList extends Component {
 
         return (
             <section className={style.container}>
-                <h1>Room List</h1>
+                <div>Room List</div>
+
                 {this.state.rooms.map( room =>
-                    <h1 key={room.key} onClick={ () => this.setRoom(room)}>{room.name}</h1>
+                    <div key={room.key} 
+                    className={room.key === this.props.activeRoom.key ? style.active : ''}
+                    onClick={ () => this.setRoom(room)}>{room.name}
+                    </div>
+
                 )}
+                
                 <form onSubmit={(event) => this.handleCreateRoom(event)}>
                     <input type="text" value={this.state.newRoom} onChange={ (e) => this.handleChange(e) }/>
                     <button type="submit">Submit</button>

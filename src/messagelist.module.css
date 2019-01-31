@@ -1,0 +1,9 @@
+.none {
+    display: none;
+}
+
+.active {
+    display: block;
+    width: 70%;
+    background-color: rgb(220,220,220);
+}

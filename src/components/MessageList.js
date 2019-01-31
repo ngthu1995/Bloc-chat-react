@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import style from './../messagelist.module.css'
 
 class MessageList extends Component {
     constructor(props) {
@@ -6,7 +7,9 @@ class MessageList extends Component {
         this.state = {
             messagesList : [],
             roomId: '',
-            newMessage: ''
+            newMessage: '', 
+            user: '',
+            sendAt: ''
         }
 
         this.messagesRef = this.props.firebase.database().ref('messages');    
@@ -22,40 +25,44 @@ class MessageList extends Component {
     }
 
     handleChange(event) {
-        event.preventDefault();
         this.setState({
             newMessage: event.target.value,
-            roomId: this.props.activeRoom.key
+            roomId: this.props.activeRoom.key,
+            user: "user",
         });
-        console.log(this.state.roomId);
+
     }
 
     handleCreateMessage(e) {
         this.messagesRef.push({
             message: this.state.newMessage,
-            roomId: this.state.roomId
+            roomId: this.state.roomId,
+            sendAt: this.props.firebase.database.ServerValue.TIMESTAMP,
+            user: this.state.user
         })
+        e.preventDefault();       
         this.setState({newMessage: ''});
-        e.preventDefault();
     }
 
     render() { 
         return (
-            <div className="messagesList">
-                <h1>Message List will be here.</h1>
-                <form onSubmit={ (e) => this.handleCreateMessage(e) } >
+            <section className={this.props.activeRoom ? style.active : style.none}>
+                <h2>Message List will be here.</h2>
+                <h4>{this.props.activeRoom.name}</h4>
+                <form onSubmit={(e) => this.handleCreateMessage(e)}>
                     <input type="text" value={this.state.newMessage} onChange={ (e) => this.handleChange(e) }/>
                     <button type="submit">Submit</button>
                 </form>
+
                 { this.state.messagesList.map( message => 
                     {if (message.roomId === this.props.activeRoom.key) {
-                        return <h1 key={message.key}>{message.message}</h1>
+                        return <h4 key={message.key}>{message.message}</h4>
                       }
                       return null;}
                 )}
-                    
+                  
                 
-            </div>
+            </section>
          );
     }
 }

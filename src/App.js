@@ -30,10 +30,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <RoomList
+        <RoomList className="room-list"
           firebase = {firebase} activeRoom={this.state.activeRoom} toSetActiveRoom={this.handlerSetActiveRoom}
         />
-        <MessageList
+        <MessageList className="message-list"
          firebase = {firebase} activeRoom={this.state.activeRoom} 
          />
       </div>
