@@ -8,7 +8,7 @@ class MessageList extends Component {
             messagesList : [],
             roomId: '',
             newMessage: '', 
-            user: '',
+            username: '',
             sendAt: ''
         }
 
@@ -24,13 +24,12 @@ class MessageList extends Component {
         });
     }
 
-    handleChange(event) {
+    handleChange(e) {   
         this.setState({
-            newMessage: event.target.value,
+            newMessage: e.target.value,
             roomId: this.props.activeRoom.key,
-            user: "user",
+            username: this.props.user.displayName
         });
-
     }
 
     handleCreateMessage(e) {
@@ -38,7 +37,7 @@ class MessageList extends Component {
             message: this.state.newMessage,
             roomId: this.state.roomId,
             sendAt: this.props.firebase.database.ServerValue.TIMESTAMP,
-            user: this.state.user
+            username: this.state.username
         })
         e.preventDefault();       
         this.setState({newMessage: ''});
@@ -56,7 +55,8 @@ class MessageList extends Component {
 
                 { this.state.messagesList.map( message => 
                     {if (message.roomId === this.props.activeRoom.key) {
-                        return <h4 key={message.key}>{message.message}</h4>
+                        return <div key={message.key}><h4>{message.message}</h4><h4>{message.username}</h4></div>
+                    
                       }
                       return null;}
                 )}
