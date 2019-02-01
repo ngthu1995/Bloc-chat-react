@@ -50,11 +50,9 @@ class RoomList extends Component {
                 <div>Room List</div>
 
                 {this.state.rooms.map( room =>
-                    <div>
                         <h3 key={room.key} 
                         className={room.key === this.props.activeRoom.key ? style.active : ''}
                         onClick={ () => this.setRoom(room)}>{room.name}</h3>
-                    </div>
 
                 )}
                 
