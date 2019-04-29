@@ -46,20 +46,29 @@ class RoomList extends Component {
     render() { 
 
         return (
-            <section className={style.container}>
-                <div>Room List</div>
+            <section className={style.room_container}>
+                <div className={style.room_header} >ROOM LIST</div>
+                <div className={style.room_list}>
+                    <form className={style.room_form} onSubmit={(event) => this.handleCreateRoom(event)}>
+                        <input 
+                            type="text" 
+                            placeholder="Create your own room ..."
+                            value={this.state.newRoom} 
+                            className={style.input_bg}
+                            onChange={ (e) => this.handleChange(e) }
+                        />
+                        {/* <button type="submit">Submit</button> */}
+                    </form>
 
-                {this.state.rooms.map( room =>
-                        <h3 key={room.key} 
-                        className={room.key === this.props.activeRoom.key ? style.active : ''}
-                        onClick={ () => this.setRoom(room)}>{room.name}</h3>
-
-                )}
+                    {this.state.rooms.map( room =>
+                        <div key={room.key} className={style.room_channel}>    
+                            <div  
+                            className={room.key === this.props.activeRoom.key ? style.room_active : style.room}
+                            onClick={ () => this.setRoom(room)}>{room.name}</div>
+                        </div> 
+                    )}
+                </div>
                 
-                <form onSubmit={(event) => this.handleCreateRoom(event)}>
-                    <input type="text" value={this.state.newRoom} onChange={ (e) => this.handleChange(e) }/>
-                    <button type="submit">Submit</button>
-                </form>
             </section>
         );
     }

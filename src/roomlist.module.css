@@ -1,10 +1,79 @@
-.container {
-    width: 30%;
-    background-color: #ffc500;
+.room_container {
+    width: 20%;
+    background-image: linear-gradient( to bottom ,rgb(44,51,59) , rgb(24, 27, 31));
     text-align: left;
-    padding: 2rem;
+    color: #FFF;
+    cursor: pointer;
+    top: 0; left: 0;
 }
 
-.active {
-    color: red;
+.room_list {
+}
+
+.room_header {
+    padding: 0 2rem;
+    margin-top: 1rem;
+    font-weight: bold;
+    line-height: 1.6;
+}
+
+.room {
+    padding: 0 2rem;
+    margin: 10px 0;
+}
+
+.room_active {
+    background-color: rgb(98,125,245);
+    padding: 0.6rem 2rem;
+    margin: 10px 0;
+}
+
+.room_channel {
+    
+}
+
+.room_form {
+    display: flex;
+    padding: 2rem;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.room_form input {
+    border: none;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+    outline: 0;
+    background-color: rgba(121, 146, 255, 0.267);
+    border-radius: 5px;
+    width: 100%;
+}
+
+.room_form input:focus  {
+    color: white;
+}
+
+.input_bg {
+    background-image: url('./images/plus-icon.png');
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+    background-size: 18px 18px;
+    opacity: 0.7;
+}
+
+.room_form button {
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    background: transparent;
+    cursor: pointer;
+    margin: 0 12px 0 0;
+}
+
+.room_form ::placeholder {
+    font-size: 14px;
+    color: rgb(185, 185, 185);
 }

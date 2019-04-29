@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import './App.css';
-import  RoomList  from './components/RoomList';
-import MessageList from './components/MessageList';
-import * as firebase from 'firebase';
-import User from './components/User';
+import React, { Component } from "react";
+import "./App.css";
+import RoomList from "./components/RoomList";
+import MessageList from "./components/MessageList";
+import * as firebase from "firebase";
+import User from "./components/User";
 
 var config = {
   apiKey: "AIzaSyDpqPFMAHPAxZYoehb-krMNZJuHdyy8TAE",
@@ -19,30 +19,42 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeRoom: '', 
+      activeRoom: "",
       user: null
-    }
+    };
   }
 
-  handlerSetActiveRoom = (room) => {
+  handlerSetActiveRoom = room => {
     this.setState({ activeRoom: room });
     // console.log(this.state.activeRoom);
-  }
+  };
 
-  setUser = (user) => {
+  setUser = user => {
     this.setState({ user: user });
-  }
+  };
 
   render() {
     return (
       <div className="App">
-        <RoomList className="room-list"
-          firebase = {firebase} activeRoom={this.state.activeRoom} toSetActiveRoom={this.handlerSetActiveRoom}
+        <User
+          firebase={firebase}
+          setUser={this.setUser}
+          user={this.state.user}
         />
-        <MessageList className="message-list"
-         firebase = {firebase} activeRoom={this.state.activeRoom} user={this.state.user} 
-         />
-         <User firebase={firebase} setUser={this.setUser} user={this.state.user}/>
+        <div className="main">
+          <RoomList
+            className="room-list"
+            firebase={firebase}
+            activeRoom={this.state.activeRoom}
+            toSetActiveRoom={this.handlerSetActiveRoom}
+          />
+          <MessageList
+            className="message-list"
+            firebase={firebase}
+            activeRoom={this.state.activeRoom}
+            user={this.state.user}
+          />
+        </div>
       </div>
     );
   }
